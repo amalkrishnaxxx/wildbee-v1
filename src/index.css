@@ -1,0 +1,355 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Long";
+  src: url("/fonts/long.woff");
+}
+
+@font-face {
+  font-family: "Round";
+  src: url("/fonts/round.woff");
+}
+
+@font-face {
+  font-family: "Round Bold";
+  font-weight: bold;
+  src: url("/fonts/round-bold.woff");
+}
+
+@theme {
+  --font-sans: "Round", sans-serif;
+  --font-long: "Long", sans-serif;
+  --font-round-bold: "Round Bold", sans-serif;
+  /* New Architecture Project Color Theme */
+  --color-honey-gold: #FFB400;
+  --color-charcoal: #1E1E1E;
+  --color-neutral-grey: #555555;
+  --color-white: #FFFFFF;
+  --color-light-grey: #F8F8F8;
+  --breakpoint-sm: 40rem;
+  --breakpoint-xs: 20rem;
+  --breakpoint-3xl: 120rem;
+}
+
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  font-family: "Round", sans-serif;
+  background-color: #FFFFFF;
+}
+
+main {
+  background: #FFFFFF;
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
+
+@layer components {
+  main {
+    @apply w-dvw overflow-x-hidden;
+  }
+
+  nav {
+    @apply fixed top-0 left-0 w-full flex justify-between items-center md:p-16 p-5 z-[100];
+  }
+
+  .gradient-title {
+    font-size: clamp(3.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    background: linear-gradient(110deg,
+        #D97706 0%,
+        #F59E0B 20%,
+        #FCD34D 35%,
+        #374151 50%,
+        #FCD34D 65%,
+        #F59E0B 80%,
+        #D97706 100%);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientMove 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(217, 119, 6, 0.3));
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes bounce-subtle {
+
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 3s ease-in-out infinite;
+  }
+
+  .hero-section {
+    @apply w-dvw h-dvh relative overflow-hidden;
+
+    .scale-out {
+      @apply object-cover md:scale-125 h-full;
+    }
+
+    .title-logo {
+      @apply absolute h-full md:scale-45 top-10 right-60 object-cover;
+    }
+
+    .title-logo-line {
+      position: absolute;
+      width: 440px;
+      height: 120vh;
+      top: 0%;
+      right: 35%;
+      object-fit: cover;
+      transform: rotate(0deg);
+    }
+
+
+    .trailer-logo {
+      @apply absolute -bottom-5 w-48 left-1/2 -translate-x-1/2;
+    }
+
+    .play-img {
+      @apply rounded-full md:size-28 size-20 bg-[#FFB400] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center;
+    }
+
+    .fake-logo-wrapper {
+      @apply absolute z-50 xs:top-[9.5rem] sm:top-[12.8rem] md:top-[8.5rem] 2xl:top-44 3xl:top-48 left-1/2 -translate-x-1/2;
+    }
+
+    .overlay-logo {
+      @apply size-full object-cover opacity-0 w-60 md:w-60 2xl:w-72 3xl:w-80;
+    }
+  }
+
+  .first-vd-wrapper {
+    .first-vd {
+      @apply size-full object-cover md:[object-position:50%_center] [object-position:75%_center];
+    }
+  }
+
+  .entrance-message {
+    @apply absolute inset-0 w-full h-dvh overflow-hidden z-20 opacity-100;
+
+    .entrance-logo {
+      @apply 2xl:w-72 3xl:w-80 md:w-60 w-48 absolute xs:top-[9.5rem] sm:top-[12.8rem] md:top-[8.5rem] 2xl:top-44 3xl:top-48 left-1/2 -translate-x-1/2;
+    }
+
+    .text-wrapper {
+      @apply mt-40 md:mt-60 2xl:mt-44 3xl:top-48;
+    }
+  }
+
+  .services {
+    @apply relative z-10 lg:ps-40 2xl:ps-70 ps-10 py-40 pb-0 mt-60 flex lg:flex-row flex-col justify-between gap-6 w-dvw overflow-x-hidden;
+
+    .heading-wrapper {
+      @apply mb-16;
+    }
+
+    .eyebrow {
+      @apply block text-[#FFB400] font-semibold tracking-[0.2em] text-sm uppercase mb-4 opacity-90;
+    }
+
+    h1 {
+      @apply text-[#1E1E1E] font-bold leading-[1.1] md:text-7xl text-5xl mb-6;
+
+      .highlight {
+        @apply text-[#FFB400] relative inline-block;
+      }
+    }
+
+    h2 {
+      @apply text-[#555555] md:text-2xl text-xl leading-relaxed mb-7 md:pe-20 pe-10 font-light;
+
+      .accent {
+        @apply text-[#1E1E1E] font-medium relative;
+      }
+    }
+
+    p {
+      @apply text-[#555555] md:text-2xl text-lg md:pe-28 pe-14;
+    }
+
+    .services-1 {
+      @apply bg-[#FFB400] lg:h-[80vh] w-auto -translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:5%_center] hover:scale-[0.98] transition duration-700 ease-in-out;
+      }
+    }
+
+    .services-2 {
+      @apply bg-[#FFB400] h-[90vh] w-auto md:mt-36 mt-20 -translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:80%_center] hover:scale-x-[0.97] hover:scale-y-[0.98] transition duration-700 ease-in-out;
+      }
+    }
+
+    .services-3 {
+      @apply bg-[#FFB400] h-[50vh] md:w-[60%] -translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:42%_center] hover:scale-[0.97] transition duration-700 ease-in-out;
+      }
+    }
+  }
+
+  .brands {
+    @apply relative;
+  }
+
+  .brands-life {
+    @apply relative z-10 py-40 pb-80 mt-60 flex lg:flex-row flex-col justify-between gap-5 w-dvw overflow-x-hidden;
+
+    h1 {
+      @apply text-[#FFB400] font-long uppercase text-8xl mb-10;
+    }
+
+    h2 {
+      @apply text-[#1E1E1E] md:text-5xl text-3xl mb-7 md:pe-20 pe-10;
+    }
+
+    p {
+      @apply text-[#555555] md:text-2xl text-lg md:pe-28 pe-14;
+    }
+
+    .black-text {
+      color: black;
+    }
+
+    p:last-of-type {
+      @apply md:hidden block xl:block;
+    }
+
+    .brands-1 {
+      @apply bg-[#FFB400] lg:h-[70vh] w-auto -translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:85%_center] hover:scale-[0.98] transition duration-700 ease-in-out;
+      }
+    }
+
+    .casa-1 {
+      @apply bg-[#FFB400] lg:h-[70vh] w-auto -translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:85%_center] hover:scale-[0.98] transition duration-700 ease-in-out;
+      }
+    }
+
+    .brands-2 {
+      @apply bg-[#FFB400] lg:h-[60vh] lg:w-[60%] w-[80%] md:my-36 my-20 lg:-translate-x-5 translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:50%_center] mb-5 ml-10 hover:scale-x-[0.98] hover:scale-y-[0.98] transition duration-700 ease-in-out;
+      }
+    }
+
+    .brands-3 {
+      @apply bg-[#FFB400] lg:h-[90vh] md:w-[60%] -translate-x-5;
+
+      img {
+        @apply size-full object-cover [object-position:62%_center] hover:scale-x-[0.98] hover:scale-y-[0.99] transition duration-700 ease-in-out;
+      }
+    }
+  }
+
+  .post-card {
+    @apply relative flex justify-center items-center pb-80 shadow-2xl;
+
+    .animated-gradient-bg {
+      @apply absolute w-full md:h-[200vh] h-[220vh] left-0 xl:-bottom-1/2 md:-bottom-5/6;
+    }
+
+    .post-card-wrapper {
+      @apply xl:mx-56 md:mx-12 mx-5 xl:h-[85vh] md:h-[40vh] h-[30vh] w-full flex justify-center items-center overflow-hidden relative;
+
+      video {
+        @apply w-full h-full 2xl:scale-x-105 object-cover;
+      }
+
+      img {
+        @apply absolute z-10 w-full h-full;
+      }
+
+      button {
+        @apply rounded-full bg-[#FFB400] absolute left-1/2 -translate-x-1/2 md:bottom-16 -bottom-28 md:w-fit w-2/3 px-5 md:px-7 py-4 text-lg text-[#1E1E1E] font-semibold;
+      }
+    }
+  }
+
+  .final {
+    @apply relative h-dvh overflow-hidden;
+
+    .final-content {
+      @apply scale-110;
+    }
+  }
+
+  .final-message {
+    @apply absolute w-full h-dvh overflow-hidden z-50 opacity-100;
+  }
+}
+
+.black-gradient-bg {
+  background: transparent;
+}
+
+.entrance-message {
+  mask-image: radial-gradient(circle at 50% 100vh, black 0%, transparent 0%);
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
+.mask-wrapper {
+  mask-image: url("/images/hero_logo_w.svg");
+  mask-repeat: no-repeat;
+}
+
+.animated-gradient-bg {
+  background: transparent;
+}
+
+.services-content {
+  background: transparent;
+}
+
+.brands-life-content {
+  background: transparent;
+}
